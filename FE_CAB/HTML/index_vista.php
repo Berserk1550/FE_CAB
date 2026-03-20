@@ -6,14 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Inicio SENA CAB - Fondo Emprender</title>
     <link rel="icon" href="componentes/img/favicon.ico">
-    <link rel="stylesheet" href="componentes/login.css?v=<?= $cssVer ?>" />
-    <style>
-        .mensaje-error {
-            color: #c02626;
-            margin-top: 6px;
-            font-weight: 600
-        }
-    </style>
+    <link rel="stylesheet" href="statics/css/login.css?v=<?= $cssVer ?>" />
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottQAAAABJRU5ErkJggg==">
 </head>
 
@@ -222,7 +215,7 @@
         </div>
     </footer>
 
-    <script src="componentes/js/login.js"></script>
+    <script src="statics/js/login.js"></script>
 
 </body>
 

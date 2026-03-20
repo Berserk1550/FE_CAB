@@ -178,6 +178,11 @@ body::after {
   padding-block: var(--stack-pad-block);
   padding-left: clamp(10px, 1.2vw, 14px);
 }
+.mensaje-error {
+  color: #c02626;
+  margin-top: 6px;
+  font-weight: 600px;                    
+}          
 
 .brand-stack__logo {
   height: 16px;
