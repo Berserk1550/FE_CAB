@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Inicio SENA CAB - Fondo Emprender</title>
     <link rel="icon" href="componentes/img/favicon.ico">
-    <link rel="stylesheet" href="statics/css/login.css?v=<?= $cssVer ?>" />
+    <link rel="stylesheet" href="../statics/css/login.css" />
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottQAAAABJRU5ErkJggg==">
 </head>
 
@@ -215,7 +215,7 @@
         </div>
     </footer>
 
-    <script src="statics/js/login.js"></script>
+    <script src="../statics/Js/login.js"></script>
 
 </body>
 

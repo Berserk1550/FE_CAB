@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio de herramientas Fondo Emprender SENA</title>
-  <link rel="stylesheet" href="statics/css/componentes_estilos_dashboard.css" />
-  <link rel="icon" type="image/png" href="componentes/img/favicon.ico" />
+  <link rel="stylesheet" href="../statics/css/componentes_estilos_dashboard.css" />
+  <link rel="icon" type="image/png" href="../statics/img/favicon.ico" />
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
 </head>
 
@@ -16,7 +16,7 @@
     <!-- Izquierda: logo -->
     <div class="encabezado-logo-titulo">
       <a href="dashboard" class="encabezado-logo-link" title="Ir al panel de control">
-        <img src="componentes/img/logoFondoEmprender.svg" alt="Fondo Emprender" class="encabezado-logo">
+        <img src="../statics/img/logoFondoEmprender.svg" alt="Fondo Emprender" class="encabezado-logo">
       </a>
     </div>
 
@@ -85,7 +85,7 @@
       <div class="ruta-standalone-wrap">
         <svg id="rutaCarreteraSVG" viewBox="0 0 1920 619" preserveAspectRatio="xMidYMid meet">
           <!-- PNG de fondo -->
-          <image href="componentes/img/ruta_emprendedora_1920x968.png"
+          <image href="../statics/img/ruta_emprendedora_1920x968.png"
             x="0" y="0" width="1920" height="619" preserveAspectRatio="xMidYMid meet" />
 
           <!-- Guías invisibles -->
@@ -277,8 +277,7 @@
 
   </div>
 
-  <script>
-  </script>
+  <script src="../statics/js/dashboard.js"></script>
 </body>
 
 </html>
