@@ -25,7 +25,7 @@
     })();
 
     // ===== Datos PHP -> JS =====
-    const ETAPAS = <?= json_encode($etapas, JSON_UNESCAPED_UNICODE) ?>;
+    /////LINEA UTIL COMENTADA/////const ETAPAS = <?= json_encode($etapas, JSON_UNESCAPED_UNICODE) ?>;
 
     // ===== Constantes de posicionamiento por fase =====
     const POS_T = [0.11, 0.37, 0.66, 0.88];
