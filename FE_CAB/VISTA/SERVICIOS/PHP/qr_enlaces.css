@@ -1,0 +1,249 @@
+/* ================== Acceso no autorizado — QR Enlaces ================== */
+/* Paleta y estilo basados en acceso_noautorizado.css, 
+   pero usando las clases/ids del HTML original (auth-*, btn, etc.) */
+
+:root {
+    --bg-gradient-start: #0b5e20;
+    --bg-gradient-end:   #0f8f3c;
+    --overlay-color:     rgba(2, 6, 23, 0.58);
+
+    --card-bg:          #ffffff;
+    --card-border:      #e5e7eb;
+    --card-shadow:      0 28px 84px rgba(15, 23, 42, 0.32);
+
+    --text-primary:     #0f172a;
+    --text-muted:       #64748b;
+    --text-strong:      #020617;
+
+    --accent:           #0a7c2f;
+    --accent-soft:      rgba(34, 197, 94, 0.16);
+    --accent-strong:    #16a34a;
+
+    --btn-primary-bg:   #0a7c2f;
+    --btn-primary-bg-h: #0a6b2a;
+    --btn-secondary-bg: #eef2f7;
+    --btn-border:       #cbd5e1;
+
+    --radius-lg:        18px;
+}
+
+/* ---------- Layout base de página ---------- */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--text-primary);
+    background:
+        radial-gradient(circle at top, rgba(167, 243, 208, 0.35), transparent 55%),
+        linear-gradient(165deg, var(--bg-gradient-start), var(--bg-gradient-end));
+    overflow: hidden;
+}
+
+/* ---------- Overlay + centrado del modal ---------- */
+
+.auth-modal {
+    position: fixed;
+    inset: 0;
+    background: var(--overlay-color);
+    backdrop-filter: blur(9px) saturate(130%);
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    z-index: 50;
+}
+
+/* ---------- Tarjeta principal ---------- */
+
+.auth-card {
+    position: relative;
+    width: min(560px, 94vw);
+    background:
+        radial-gradient(circle at top left, rgba(132, 204, 22, 0.07), transparent 60%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.08), transparent 60%),
+        var(--card-bg);
+    border-radius: 20px;
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow);
+    padding: 18px 20px 16px;
+    color: var(--text-primary);
+    transform: translateY(8px) scale(0.985);
+    animation: auth-pop 0.24s ease-out forwards;
+}
+
+.auth-card::before {
+    content: "";
+    position: absolute;
+    inset: -30%;
+    background:
+        radial-gradient(circle at top, rgba(22, 163, 74, 0.14), transparent 55%),
+        radial-gradient(circle at bottom, rgba(52, 211, 153, 0.16), transparent 60%);
+    opacity: 0.7;
+    z-index: -1;
+    filter: blur(10px);
+}
+
+/* ---------- Cabecera ---------- */
+
+.auth-hdr {
+    display: flex;
+    align-items: center;
+    /* 👇 ANTES: justify-content: space-between;  */
+    justify-content: flex-start;  /* Todo a la izquierda */
+    gap: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.95);
+    margin-bottom: 10px;
+}
+
+.auth-hdr::before {
+    content: "";
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    background: radial-gradient(circle at 30% 20%, #22c55e 0%, var(--accent) 70%);
+    box-shadow: 0 6px 18px rgba(10, 124, 47, 0.45);
+    flex-shrink: 0;
+}
+
+.auth-hdr h3 {
+    margin: 0;
+    font-weight: 800;
+    font-size: 1.02rem;
+    letter-spacing: -0.01em;
+    color: var(--text-strong);
+    /* Opcional: evita que intente ocupar todo el ancho */
+    flex: 0 1 auto;
+}
+
+
+/* ---------- Cuerpo del mensaje ---------- */
+
+.auth-card > p {
+    margin: 0 0 6px 0;
+}
+
+.auth-card > p:first-of-type {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.muted {
+    color: var(--text-muted);
+    font-size: 0.86rem;
+}
+
+/* Extra: pequeño realce para el contador */
+#count {
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Zona de acciones / botones ---------- */
+
+.auth-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(226, 232, 240, 0.95);
+}
+
+/* Botón base */
+
+.btn {
+    appearance: none;
+    border-radius: 12px;
+    padding: 9px 15px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    line-height: 1;
+    border: 1px solid transparent;
+    text-decoration: none;
+    transition:
+        background-color 0.13s ease-out,
+        color 0.13s ease-out,
+        box-shadow 0.13s ease-out,
+        transform 0.11s ease-out,
+        border-color 0.13s ease-out;
+}
+
+/* Botón secundario = enlace “Ir al inicio” */
+
+.btn-secondary {
+    background: var(--btn-secondary-bg);
+    border-color: var(--btn-border);
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+}
+
+/* Botón principal = “Ir ahora” */
+
+.btn-primary {
+    background: var(--btn-primary-bg);
+    border-color: var(--btn-primary-bg);
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(10, 124, 47, 0.45);
+}
+
+.btn-primary:hover {
+    background: var(--btn-primary-bg-h);
+    border-color: var(--btn-primary-bg-h);
+    transform: translateY(-1.5px);
+    box-shadow: 0 10px 26px rgba(10, 124, 47, 0.55);
+}
+
+/* ---------- Animación ---------- */
+
+@keyframes auth-pop {
+    0% {
+        opacity: 0;
+        transform: translateY(16px) scale(0.96);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(-2px) scale(1.008);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ---------- Responsivo ---------- */
+
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 16px 14px 13px;
+        border-radius: 18px;
+    }
+
+    .auth-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
