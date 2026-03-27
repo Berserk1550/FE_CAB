@@ -1,0 +1,667 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Work Sans', Arial, sans-serif;
+  background: linear-gradient(135deg, #2b7903 0%, #007832 50%, #004d1a 100%);
+  background-size: 300% 300%;
+  animation: gradiente-movimiento 12s ease-in-out infinite;
+  min-height: 100vh;
+}
+
+@keyframes gradiente-movimiento {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ========== HEADER INSTITUCIONAL SENA - GLASSMORFISMO ========== */
+.encabezado-sena {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(57, 169, 0, 0.15);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  height: 70px;
+}
+
+.encabezado-logo-titulo {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+}
+
+img.encabezado-logo,
+.encabezado-logo {
+  max-width: 100%;
+  height: 50px;
+  width: auto;
+  filter: drop-shadow(0 1px 4px #60de7d48);
+  background: #00000000;
+  border-radius: 9px;
+  padding: 0;
+  object-fit: contain;
+}
+
+.encabezado-logo:hover {
+  transform: scale(1.05);
+}
+
+
+
+.encabezado-logo-link{
+  display: flex;
+  align-items: center;
+}
+
+.encabezado-nav {
+  display: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.encabezado-nav-link {
+  font-size: 1rem;
+  color: #007832;
+  text-decoration: none;
+  font-weight: 600;
+  background: transparent;
+  border-radius: 50px;
+  padding: 10px 24px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.dropdown-medalla {
+  position: relative;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.btn-medalla {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: transform .12s ease;
+  color: var(--sena-verde);
+  padding: 0;
+}
+
+.btn-medalla:hover {
+  transform: translateY(-2px);
+  color: var(--verde);
+}
+
+.btn-medalla svg {
+  width: 24px;
+  height: 24px;
+}
+
+.tooltip-medalla {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: #ffffff;
+  color: #004d00;
+  border: 1px solid rgba(0, 77, 0, 0.08);
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  font-size: 0.9rem;
+  white-space: nowrap;
+  display: none;
+  z-index: 1000;
+  min-width: 280px;
+  text-align: center;
+}
+
+.tooltip-medalla.visible {
+  display: block;
+  animation: appear .18s ease;
+}
+
+.encabezado-nav-link:hover {
+  background: rgba(57, 169, 0, 0.1);
+  border-color: rgba(57, 169, 0, 0.2);
+}
+
+/* ========== FORMULARIO CONTENEDOR - GLASSMORFISMO ========== */
+.form-contenedor {
+  max-width: 785px;
+  margin: 110px auto 40px auto;
+  background: rgba(255, 255, 255, 0.93);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  padding: 40px 50px;
+  border-radius: 28px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  position: relative;
+}
+
+/* ========== LOGOS ========== */
+.logos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+img.logo-sena {
+  width: 100%;
+  max-width: 500px;
+  max-height: 50px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(57, 169, 0, 0.15));
+}
+
+.logos p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 8px;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+/* ========== TIPOGRAFÍA ========== */
+h2 {
+  text-align: center;
+  margin-bottom: 28px;
+  color: #007832;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+p {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* ========== FORMULARIO GRUPOS ========== */
+.form-grupo {
+  margin-bottom: 22px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+  font-size: 0.92rem;
+}
+
+/* ========== INPUTS MINIMALISTAS ========== */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 1.5px solid rgba(0, 120, 50, 0.15);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.7);
+  color: #1a1a1a;
+  transition: all 0.25s ease;
+  outline: none;
+  resize: vertical;
+}
+
+input[type="text"]:hover,
+input[type="number"]:hover,
+input[type="email"]:hover,
+select:hover,
+textarea:hover {
+  border-color: rgba(57, 169, 0, 0.35);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #39A900;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 0 4px rgba(57, 169, 0, 0.1);
+}
+
+/* Select personalizado */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23007832' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 44px;
+  cursor: pointer;
+}
+
+/* Placeholder */
+input::placeholder,
+textarea::placeholder {
+  color: #999;
+  font-weight: 400;
+}
+
+/* Contador de caracteres */
+#contador,
+#contador-correos {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.82rem;
+  text-align: right;
+  color: #888;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* ========== NAVEGACIÓN Y BOTONES ========== */
+.form-navegacion {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Botón principal (submit) - Totalmente redondeado */
+.form-navegacion button,
+button[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #39A900 0%, #007832 100%);
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border-radius: 50px;
+  box-shadow: 0 4px 18px rgba(57, 169, 0, 0.35);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+}
+
+.form-navegacion button:hover,
+button[type="submit"]:hover {
+  background: linear-gradient(135deg, #42c200 0%, #008c3a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(57, 169, 0, 0.45);
+}
+
+.form-navegacion button:active,
+button[type="submit"]:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 12px rgba(57, 169, 0, 0.3);
+}
+
+/* Botón secundario (enlaces) - Totalmente redondeado */
+a.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #007832;
+  border: 2px solid rgba(0, 120, 50, 0.25);
+  padding: 12px 28px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  font-family: inherit;
+  border-radius: 50px;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-bottom: 25px;
+}
+
+a.btn:hover {
+  background: rgba(57, 169, 0, 0.08);
+  border-color: #39A900;
+  transform: translateY(-2px);
+}
+
+a.btn:active {
+  transform: translateY(0);
+}
+
+/* ========== SUBIR ARCHIVO - ESTILO MINIMALISTA ========== */
+.subir-archivo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.custom-subir-archivo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(57, 169, 0, 0.1);
+  color: #007832;
+  padding: 12px 22px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 2px solid rgba(57, 169, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.custom-subir-archivo:hover {
+  background: rgba(57, 169, 0, 0.18);
+  border-color: #39A900;
+  transform: translateY(-1px);
+}
+
+.subir-archivo input[type="file"] {
+  display: none;
+}
+
+#file-name,
+#imagen-nombre {
+  font-style: normal;
+  color: #666;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+/* ========== PREVIEW DE IMAGEN ========== */
+.preview-imagen {
+  margin-top: 14px;
+}
+
+.preview-imagen img {
+  max-width: 100%;
+  max-height: 180px;
+  border-radius: 16px;
+  border: 2px solid rgba(0, 120, 50, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* ========== LOG DE MENSAJES ========== */
+#log {
+  margin-top: 24px;
+  padding: 16px;
+  background: rgba(57, 169, 0, 0.06);
+  border-radius: 14px;
+  color: #007832;
+  font-size: 0.9rem;
+  border: 1px solid rgba(57, 169, 0, 0.15);
+}
+
+/* ========== MEDALLA / BADGE DECORATIVO ========== */
+.medalla {
+  position: absolute;
+  top: -15px;
+  right: 30px;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.medalla-verde {
+  background: linear-gradient(135deg, #39A900 0%, #007832 100%);
+  box-shadow: 0 4px 15px rgba(57, 169, 0, 0.4);
+}
+
+/* ========== ANIMACIÓN DE ENTRADA ========== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-contenedor {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 900px) {
+  body {
+    padding: 0;
+  }
+
+  .form-contenedor {
+    width: 95vw;
+    max-width: 95vw;
+    padding: 35px 28px;
+    margin: 100px auto 30px auto;
+    border-radius: 24px;
+  }
+
+  h2 {
+    font-size: 1.45rem;
+    margin-bottom: 22px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  select,
+  textarea {
+    font-size: 1rem;
+    padding: 14px 16px;
+    border-radius: 12px;
+  }
+
+  .form-navegacion {
+    flex-direction: row;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .form-navegacion button,
+  a.btn {
+    min-width: 140px;
+    font-size: 0.95rem;
+    padding: 14px 24px;
+  }
+
+  .custom-subir-archivo {
+    font-size: 0.95rem;
+    padding: 12px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .encabezado-sena {
+    grid-template-columns: 1fr;
+    padding: 10px 16px;
+    gap: 8px;
+  }
+
+  .encabezado-logo-titulo {
+    margin-left: 0;
+    justify-content: center;
+    grid-column: 1;
+  }
+
+  .encabezado-titulo {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .encabezado-nav {
+    grid-column: 1;
+    justify-content: center;
+    padding-right: 0;
+  }
+
+  .form-contenedor {
+    width: 94vw;
+    padding: 28px 20px;
+    margin: 120px auto 24px auto;
+    border-radius: 20px;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-size: 0.9rem;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  select,
+  textarea {
+    font-size: 1rem;
+    padding: 13px 14px;
+    border-radius: 12px;
+  }
+
+  .form-navegacion {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .form-navegacion button,
+  a.btn {
+    width: 100%;
+    font-size: 1rem;
+    padding: 15px 20px;
+  }
+
+  a.btn {
+    margin-bottom: 20px;
+  }
+
+  .custom-subir-archivo {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.95rem;
+    padding: 13px 18px;
+  }
+
+  .subir-archivo {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #file-name,
+  #imagen-nombre {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+  img.logo-sena {
+    max-width: 280px;
+  }
+
+  .medalla {
+    top: -12px;
+    right: 20px;
+    font-size: 0.7rem;
+    padding: 6px 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .form-contenedor {
+    padding: 22px 16px;
+    border-radius: 18px;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  label {
+    font-size: 0.85rem;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  select,
+  textarea {
+    font-size: 0.95rem;
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .form-navegacion button,
+  a.btn {
+    font-size: 0.95rem;
+    padding: 14px 16px;
+  }
+}
+
+/* ========== FOCUS VISIBLE PARA ACCESIBILIDAD ========== */
+button:focus-visible,
+a.btn:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #39A900;
+  outline-offset: 2px;
+}
+
+/* ========== SCROLLBAR PERSONALIZADA ========== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(57, 169, 0, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(57, 169, 0, 0.5);
+}

@@ -1,0 +1,202 @@
+/* =======================================================================
+   ACCESO NO AUTORIZADO — Glassmorfismo SENA
+   Adaptado a eliminar_emprendedor.php (Clases personalizadas)
+   ======================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --sena-green: #39A900;
+    --sena-green-dark: #007832;
+    --sena-green-darker: #005c1e;
+
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+
+    --error-red: #dc2626;
+    --error-red-dark: #b91c1c;
+
+    --border-light: #e5e7eb;
+}
+
+/* ===== Fondo ===== */
+html, body {
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    font-family: 'Work Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, var(--sena-green-darker), var(--sena-green-dark), var(--sena-green));
+    background-size: 300% 300%;
+    animation: bgMove 12s ease-in-out infinite;
+    color: var(--text-primary);
+}
+
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===== Overlay ===== */
+.unauthorized-modal {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    z-index: 9999;
+}
+
+.unauthorized-modal::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 6, 23, 0.45);
+    backdrop-filter: blur(10px) saturate(135%);
+}
+
+/* ===== Card ===== */
+.unauthorized-card {
+    width: min(480px, 92vw);
+    background: rgba(255, 255, 255, 0.93);
+    backdrop-filter: blur(22px);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 24px;
+    box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.25),
+        0 8px 24px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255,255,255, 0.9);
+    animation: modalPop .38s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    overflow: hidden;
+    transform: translateY(15px) scale(.96);
+}
+
+@keyframes modalPop {
+    to { transform: translateY(0) scale(1); }
+}
+
+/* ===== Header ===== */
+.unauthorized-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.12), rgba(185, 28, 28, 0.06));
+    border-bottom: 1px solid rgba(220, 38, 38, 0.18);
+}
+
+.unauthorized-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--error-red), var(--error-red-dark));
+    display: grid;
+    place-items: center;
+    box-shadow: 0 4px 16px rgba(220, 38, 38, 0.35);
+    color: #fff;
+}
+
+.unauthorized-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.unauthorized-title {
+    margin: 0;
+    font-size: 1.17rem;
+    font-weight: 800;
+    letter-spacing: -.2px;
+}
+
+/* ===== Body ===== */
+.unauthorized-body {
+    padding: 22px 24px;
+    font-size: .95rem;
+}
+
+.unauthorized-body p {
+    margin: 0 0 10px;
+}
+
+.unauthorized-body strong {
+    color: var(--sena-green-dark);
+    font-weight: 700;
+}
+
+/* Countdown Text */
+.countdown {
+    color: var(--text-secondary);
+    margin-top: 6px;
+    font-size: .9rem;
+}
+
+.countdown strong {
+    color: var(--error-red);
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+/* ===== Botones ===== */
+.unauthorized-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 18px 22px;
+    border-top: 1px solid rgba(255,255,255,0.4);
+    background: rgba(0,0,0,0.03);
+}
+
+/* Botón base */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: .92rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all .25s ease;
+    border: none;
+}
+
+/* Secundario */
+.btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 2px solid rgba(0,0,0,0.15);
+}
+
+.btn-secondary:hover {
+    background: rgba(0,0,0,0.04);
+    border-color: rgba(0,0,0,0.25);
+    transform: translateY(-1px);
+}
+
+/* Primario */
+.btn-primary {
+    background: linear-gradient(135deg, var(--sena-green), var(--sena-green-dark));
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(57, 169, 0, 0.35);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #42c200, #008c3a);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(57, 169, 0, 0.45);
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 480px) {
+    .unauthorized-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .btn {
+        width: 100%;
+    }
+}
