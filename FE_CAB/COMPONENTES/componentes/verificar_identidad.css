@@ -1,0 +1,451 @@
+:root {
+    --sena: #39A900;
+    --sena-dark: #007832;
+    --ink: #0f172a;
+    --muted: #64748b;
+    --card: #fff;
+    --ring: rgba(57, 169, 0, .35);
+    --shadow: 0 18px 60px rgba(0, 0, 0, .14);
+    --radius: 16px;
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    margin: 0;
+    font-family: "Work Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        /* vignette suave para profundidad */
+        radial-gradient(1200px 700px at 50% 120%, rgba(0, 0, 0, .10) 0%, rgba(0, 0, 0, 0) 60%),
+        radial-gradient(1200px 700px at 50% -20%, rgba(255, 255, 255, .06) 0%, rgba(255, 255, 255, 0) 55%),
+        linear-gradient(135deg, #0f5e25 0%, #0a6e2a 42%, #007832 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* Card */
+.card-auth {
+    width: min(480px, 94vw);
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: clamp(18px, 3.2vw, 28px);
+    border: 1px solid rgba(0, 0, 0, .06);
+    animation: fadeInUp .5s ease both;
+}
+
+.auth-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px
+}
+
+.auth-header img {
+    width: 150px;
+    height: 40px;
+    object-fit: contain;
+    display: block
+}
+
+.auth-header h1 {
+    margin: 0;
+    font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+    font-weight: 700;
+    color: var(--sena-dark)
+}
+
+.lead {
+    color: var(--muted);
+    font-size: .98rem;
+    margin: -6px 0 14px;
+    font-weight: 400;
+}
+
+/* Form */
+.form-label {
+    display: block;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px
+}
+
+.form-control {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid #dce3e8;
+    padding: 12px 14px;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.form-control:focus {
+    border-color: var(--sena);
+    outline: 0;
+    box-shadow: 0 0 0 4px var(--ring)
+}
+
+.form-text {
+    color: var(--muted);
+    font-size: .9rem;
+    margin-top: 6px
+}
+
+/* --- "Mensaje interactivo" en lugar de botón --- */
+.btn-sena {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    width: 100%;
+    padding: 12px 14px;
+    text-decoration: none;
+    /* Apariencia de aviso */
+    background: #f1faf4;
+    /* verde muy claro */
+    color: #0f6a2a;
+    /* verde SENA oscuro */
+    border: 1px solid #cfe9d0;
+    /* borde suave */
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    /* sin sombras ni degradados */
+    box-shadow: none;
+    transition: background .15s ease, border-color .15s ease, color .15s ease;
+    justify-content: center;
+}
+
+/* Iconito opcional delante (quítalo si no lo quieres) */
+.btn-sena::before {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+/* Hover: parece enlace/aviso interactivo */
+.btn-sena:hover {
+    background: #e6f4ea;
+    border-color: #b8e0c0;
+    text-decoration: none;
+
+}
+
+/* Enfocado por teclado: aro accesible */
+.btn-sena:focus-visible {
+    outline: 3px solid rgba(57, 169, 0, .28);
+    outline-offset: 2px;
+}
+
+/* Estado "cargando"/deshabilitado coherente con mensaje */
+.btn-sena[disabled],
+.btn-sena:disabled {
+    background: #f4f7f5;
+    color: #94a3b8;
+    border-color: #e2e8f0;
+    cursor: not-allowed;
+    text-decoration: none;
+    opacity: 1;
+    /* que no se vea "apagado" */
+}
+
+.volver {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 70px;
+    color: var(--sena-dark);
+    text-decoration: none;
+    font-weight: 600
+}
+
+.volver:hover {
+    text-decoration: underline
+}
+
+.alert {
+    margin-top: 20px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: #fee2e2;
+    color: #7f1d1d;
+    border: 1px solid #fecaca
+}
+
+/* Modal (sin Bootstrap) */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease;
+}
+
+.modal.is-open,
+.modal.is-open+.modal-backdrop {
+    opacity: 1;
+    pointer-events: auto
+}
+
+.modal-card {
+    width: min(540px, 96vw);
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, .06);
+    box-shadow: var(--shadow);
+    transform: translateY(8px);
+    animation: modalIn .2s ease forwards;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px 8px
+}
+
+.modal-title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--sena-dark)
+}
+
+.modal-body {
+    padding: 6px 16px 14px;
+    color: #111827
+}
+
+.modal-footer {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    padding: 0 16px 16px
+}
+
+.btn {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    background: #fff;
+    cursor: pointer
+}
+
+.btn:hover {
+    background: #f3f4f6
+}
+
+.btn-success {
+    background: var(--sena);
+    color: #fff;
+    border-color: transparent
+}
+
+.btn-success:hover {
+    filter: saturate(1.05) brightness(1.02)
+}
+
+.btn-close {
+    appearance: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    cursor: pointer
+}
+
+.btn-close:before {
+    content: "✕";
+    display: block;
+    text-align: center;
+    line-height: 32px;
+    color: #334155
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+@keyframes modalIn {
+    to {
+        transform: translateY(0)
+    }
+}
+
+.alert.success {
+    background: #e9f9ef;
+    color: #065f46;
+    border: 1px solid #bbf7d0;
+}
+
+/* Corregido: aplicar a cualquier elemento con id="btnRedir" */
+#btnRedir {
+    background: var(--sena);
+    border-color: #b8e0c0;
+    text-decoration: none;
+}
+
+#btnRedir:hover {
+    background: #0f6a2a;
+    border-color: #b8e0c0;
+    text-decoration: none;
+}
+
+/* =========================
+   RESPONSIVE (móvil/tablet)
+   ========================= */
+
+@media (max-width: 768px) {
+    body {
+        align-items: flex-start;
+        justify-content: center;
+        padding: 20px 12px;
+        padding-top: 30px;
+    }
+
+    .card-auth {
+        width: 100%;
+        max-width: 520px;
+        padding: 28px 22px;
+        border-radius: 20px;
+        transform: scale(1.07);
+    }
+
+    .auth-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 26px;
+    }
+
+    .auth-header img {
+        width: 185px;
+        height: auto;
+    }
+
+    .auth-header h1 {
+        font-size: 1.38rem;
+    }
+
+    .lead {
+        font-size: 1.07rem;
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-size: 1.05rem;
+    }
+
+    .form-control {
+        padding: 16px 18px;
+        font-size: 1.1rem;
+        border-radius: 14px
+    }
+
+    .btn-sena {
+        font-size: 1.12rem;
+        padding: 16px 20px;
+        border-radius: 30px;
+    }
+
+    .volver {
+        font-size: 1rem;
+        margin-top: 40px;
+    }
+
+    .modal-card {
+        width: 100%;
+        max-width: 520px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 18px 10px;
+    }
+
+    .card-auth {
+        padding: 26px 20px;
+        transform: scale(1.13);
+        border-radius: 18px;
+        margin-top: 70px;
+    }
+
+    .auth-header img {
+        width: 180px;
+    }
+
+    .auth-header h1 {
+        font-size: 1.33rem;
+    }
+
+    .lead {
+        font-size: 1.05rem;
+        margin-bottom: 24px;
+    }
+
+    .form-label {
+        font-size: 0.96rem;
+    }
+
+    .form-control {
+        padding: 17px 20px;
+        font-size: 1.12rem;
+    }
+
+    .btn-sena {
+        padding: 18px 22px;
+        font-size: 1.15rem;
+    }
+        .volver {
+        font-size: 1.02rem;
+    }
+
+    .modal {
+        padding: 14px;
+    }
+
+    .modal-card {
+        border-radius: 14px;
+        width: 100%;
+        max-width: 480px;
+    }
+
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+}

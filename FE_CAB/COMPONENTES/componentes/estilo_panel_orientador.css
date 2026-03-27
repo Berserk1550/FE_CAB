@@ -1,0 +1,605 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Work Sans', Arial, sans-serif;
+  margin: 0;
+  padding-top: 80px;
+  background: none;
+  color: #222;
+  box-shadow: #444;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('img/tablerobest.png') no-repeat center center fixed;
+  background-size: cover;
+  filter: blur(8px);
+  z-index: 0;
+}
+
+body>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* ================= HEADER ================= */
+
+.encabezado-sena {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 2px solid #39a90030;
+  padding: 12px 24px;
+  box-shadow: 0 2px 12px 0 #39a90010;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  height: 70px;
+}
+
+.encabezado-logo-titulo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-shrink: 0;
+}
+
+.encabezado-logo-link {
+  display: flex;
+  align-items: center;
+}
+
+.encabezado-logo {
+  max-width: 100%;
+  height: 50px;
+  width: auto;
+  filter: drop-shadow(0 1px 4px #60de7d48);
+  background: #00000000;
+  border-radius: 9px;
+  padding: 0;
+  object-fit: contain;
+}
+
+/* Nav derecha: medalla + perfil */
+.encabezado-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.btn-medalla {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  transition: transform .12s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Contenedor básico de dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.texto-encabezado {
+  font-size: 0.9rem;
+  color: #004d00;
+  line-height: 1.2;
+}
+
+.texto-oculto {
+  display: none;
+}
+
+.usuario-nombre {
+  font-size: 1.5rem;
+  color: #007832;
+  line-height: 1.3;
+  max-width: 100%;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+/* Botón Perfil (estilos base) */
+.dropdown-btn {
+  background-color: #39a900;
+  color: white;
+  padding: 10px 18px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dropdown-btn:hover {
+  background-color: #2e7d32;
+}
+
+/* Contenido del dropdown (base) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;          /* pegado justo debajo del botón */
+  right: 0;
+  background-color: white;
+  min-width: 180px;
+  max-width: 90vw;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  border-radius: 8px;
+  overflow: hidden;
+  word-wrap: break-word;
+  margin-top: 0;      /* <<< quita el hueco que causaba el parpadeo */
+}
+
+
+.dropdown-content a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background 0.2s;
+}
+
+.dropdown-content a:hover {
+  background-color: #f4f4f4;
+}
+
+/* ahora: se mantiene abierto mientras el mouse esté sobre el botón o el menú */
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+  display: block;
+}
+
+
+.dropdown-medalla {
+  position: relative;
+  display: inline-block;
+}
+
+.btn-medalla:hover {
+  transform: translateY(-2px);
+}
+
+.tooltip-medalla {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: #ffffff;
+  color: #004d00;
+  border: 1px solid rgba(0, 77, 0, 0.08);
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  font-size: 0.9rem;
+  white-space: nowrap;
+  display: none;
+  z-index: 1000;
+  min-width: 280px;
+  text-align: center;
+}
+
+.tooltip-medalla.visible {
+  display: block;
+  animation: appear .18s ease;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== FIX DROPDOWN PERFIL: SIEMPRE DEBAJO DEL BOTÓN ========== */
+
+/* Contenedor del dropdown del header */
+.encabezado-sena .dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Botón Perfil en el header (override suave) */
+.encabezado-sena .dropdown-btn {
+  background-color: #39a900;
+  color: #fff;
+  padding: 10px 18px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.encabezado-sena .dropdown-btn:hover {
+  background-color: #2e7d32;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transform: translateY(-1px);
+}
+
+/* Menú del perfil: FORZADO DEBAJO DEL BOTÓN */
+.encabezado-sena .dropdown-content {
+  position: absolute !important;
+  top: calc(100% + 6px) !important;   /* justo debajo del botón */
+  left: auto !important;
+  right: 0 !important;                /* alineado al borde derecho */
+  min-width: 190px;
+  max-width: 90vw;
+  background-color: #fff;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  border-radius: 8px;
+  overflow: hidden;
+  display: none;
+  z-index: 3000;
+}
+
+.encabezado-sena .dropdown-content a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  color: #333;
+  text-decoration: none;
+}
+
+.encabezado-sena .dropdown-content a:hover {
+  background-color: #f4f4f4;
+}
+
+/* Mantener abierto mientras el mouse esté en el botón, área cercana o menú */
+.encabezado-sena .dropdown:hover .dropdown-content,
+.encabezado-sena .dropdown-content:hover {
+  display: block;
+}
+
+/* Hitbox de hover alrededor del botón para que no se cierre fácil */
+.encabezado-sena .dropdown::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+}
+
+/* Botón y menú por encima del hitbox invisible */
+.encabezado-sena .dropdown-btn,
+.encabezado-sena .dropdown-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* ================= PANEL / TARJETAS ================= */
+
+/* ---------- Contenedor principal ---------- */
+.panel-orientador {
+  max-width: 960px;
+  margin: 30px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  width: calc(100% - 20px);
+}
+
+.panel-bienvenida {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.panel-bienvenida h2 {
+  font-size: 1.35rem;
+  color: #007832;
+  margin-bottom: 10px;
+}
+
+.panel-bienvenida p {
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  margin-left: 8px;
+}
+
+/* ---------- Acciones rápidas ---------- */
+.lista-opciones {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.btn-opcion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #39a900;
+  color: white;
+  padding: 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: background 0.5s;
+  font-size: 0.9rem;
+}
+
+.btn-opcion:hover {
+  background-color: #2e7d32;
+}
+
+.bienvenida {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+/* ---------- Secciones / tarjetas ---------- */
+.grupo-seccion {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f7fdf7;
+  border-radius: 10px;
+  box-shadow: inset 0 0 8px rgba(0, 120, 50, 0.2);
+}
+
+.titulo-seccion {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #007832;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dashboard-tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  justify-items: center;
+}
+
+.tarjeta-interactiva {
+  display: grid;
+  grid-auto-rows: max-content;
+  justify-items: center;
+  text-align: center;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  padding: 18px 16px;
+  text-decoration: none;
+  color: #007832;
+  transition: transform 0.2s, box-shadow 0.2s;
+  min-height: 180px;
+}
+
+.tarjeta-interactiva:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.tarjeta-icono {
+  display: grid;
+  place-items: center;
+  margin-bottom: 8px;
+}
+
+.tarjeta-icono img,
+.tarjeta-icono svg {
+  display: block;
+  margin: 0 auto;
+}
+
+.tarjeta-titulo {
+  font-weight: 700;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.tarjeta-desc {
+  font-size: 0.75rem;
+  color: #555;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media screen and (max-width: 768px) {
+  body {
+    padding-top: 75px;
+  }
+
+  .encabezado-sena {
+    padding: 10px 15px;
+    height: 65px;
+  }
+
+  .panel-orientador {
+    padding: 20px 15px;
+    margin: 15px 10px;
+    width: calc(100% - 20px);
+  }
+
+  .bienvenida {
+    padding-top: 5px;
+    padding-bottom: 15px;
+  }
+
+  .usuario-nombre {
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+
+  .panel-bienvenida h2 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .panel-bienvenida p {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+  }
+
+  .encabezado-logo {
+    height: 42px;
+  }
+
+  .encabezado-logo-titulo {
+    gap: 10px;
+  }
+
+  .encabezado-nav {
+    gap: 6px;
+  }
+
+  .btn-medalla {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .dropdown-btn {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+  }
+
+  .tooltip-medalla {
+    min-width: 200px;
+    right: 0;
+    left: auto;
+    font-size: 0.8rem;
+  }
+
+  .dashboard-tarjetas {
+    grid-template-columns: 1fr;
+  }
+
+  .grupo-seccion {
+    margin-top: 20px;
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    padding-top: 70px;
+  }
+
+  .encabezado-sena {
+    padding: 8px 12px;
+    height: 60px;
+  }
+
+  .panel-orientador {
+    margin: 10px 8px;
+    padding: 18px 12px;
+    width: calc(100% - 16px);
+    border-radius: 10px;
+  }
+
+  .bienvenida {
+    padding-top: 0;
+    padding-bottom: 12px;
+  }
+
+  .usuario-nombre {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .panel-bienvenida h2 {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .panel-bienvenida h2 img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .panel-bienvenida p {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+    margin-left: 0;
+  }
+
+  .encabezado-logo {
+    height: 38px;
+  }
+
+  .encabezado-logo-titulo {
+    gap: 8px;
+  }
+
+  .encabezado-nav {
+    gap: 4px;
+  }
+
+  .btn-medalla {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+  }
+
+  .dropdown-btn {
+    padding: 7px 12px;
+    font-size: 0.85rem;
+  }
+
+  .grupo-seccion {
+    margin-top: 15px;
+    padding: 12px;
+  }
+
+  .titulo-seccion {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .btn-opcion {
+    padding: 11px;
+    font-size: 0.85rem;
+  }
+}

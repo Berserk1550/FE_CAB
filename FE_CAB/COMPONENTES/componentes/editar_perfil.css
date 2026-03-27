@@ -1,0 +1,256 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #39A900 0%, #007832 50%, #004d1a 100%);
+    background-size: 200% 200%;
+    animation: gradiente-movimiento 8s ease-in-out infinite;
+    padding: 20px;
+}
+
+@keyframes gradiente-movimiento {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Contenedor principal con glassmorfismo */
+.form-container {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 40px 45px;
+    border-radius: 24px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        0 2px 8px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    width: 100%;
+    max-width: 645px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+h2 {
+    text-align: center;
+    color: #007832;
+    font-weight: 600;
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+    letter-spacing: -0.5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+label {
+    font-weight: 500;
+    color: #333;
+    font-size: 0.9rem;
+    margin-top: 12px;
+    margin-bottom: 4px;
+}
+
+/* Inputs con estilo minimalista */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    padding: 14px 18px;
+    border: 1.5px solid rgba(0, 120, 50, 0.15);
+    border-radius: 14px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    background: rgba(255, 255, 255, 0.7);
+    color: #1a1a1a;
+    transition: all 0.25s ease;
+    outline: none;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover {
+    border-color: rgba(0, 120, 50, 0.3);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #39A900;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 4px rgba(57, 169, 0, 0.1);
+}
+
+/* Input deshabilitado (número de documento) */
+input#numero_id,
+input[readonly] {
+    background: rgba(0, 0, 0, 0.04);
+    color: #666;
+    cursor: not-allowed;
+    border-color: transparent;
+}
+
+input#numero_id:focus,
+input[readonly]:focus {
+    border-color: transparent;
+    box-shadow: none;
+}
+
+/* Placeholder */
+input::placeholder {
+    color: #999;
+    font-weight: 400;
+}
+
+/* Contenedor de botones */
+.botones-acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+/* Estilos base para botones */
+button {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.3px;
+}
+
+/* Botón guardar */
+.boton-guardar {
+    background: linear-gradient(135deg, #39A900 0%, #007832 100%);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(57, 169, 0, 0.3);
+    margin-top: 0;
+}
+
+.boton-guardar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(57, 169, 0, 0.4);
+    background: linear-gradient(135deg, #42c200 0%, #008c3a 100%);
+}
+
+.boton-guardar:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(57, 169, 0, 0.3);
+}
+
+/* Botón cancelar */
+.boton-cancelar {
+    background: transparent;
+    color: #dc2626;
+    border: 2px solid rgba(220, 38, 38, 0.3);
+    margin-top: 0;
+    box-shadow: none;
+}
+
+.boton-cancelar:hover {
+    background: rgba(220, 38, 38, 0.08);
+    border-color: #dc2626;
+    transform: translateY(-1px);
+}
+
+.boton-cancelar:active {
+    transform: translateY(0);
+    background: rgba(220, 38, 38, 0.12);
+}
+
+/* Link de cancelar (si se usa como enlace) */
+.cancelar {
+    text-decoration: none;
+    color: #666;
+    padding: 10px 18px;
+    text-align: center;
+    transition: color 0.2s ease;
+}
+
+.cancelar:hover {
+    color: #dc2626;
+}
+
+/* Contenedor de botones alternativo */
+.boton {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    body {
+        padding: 16px;
+        align-items: flex-start;
+        padding-top: 40px;
+    }
+
+    .form-container {
+        padding: 30px 24px;
+        border-radius: 20px;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+        margin-bottom: 24px;
+    }
+
+    label {
+        font-size: 0.85rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+        border-radius: 12px;
+    }
+
+    button {
+        padding: 13px 20px;
+        font-size: 0.9rem;
+    }
+
+    .botones-acciones {
+        margin-top: 24px;
+    }
+}
+
+/* Animación sutil al cargar */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-container {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Focus visible para accesibilidad */
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid #39A900;
+    outline-offset: 2px;
+}
