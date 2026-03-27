@@ -41,3 +41,125 @@
     </body>
 
     </html>
+
+/**ESTE SEGUNDO HTML SE ENCUENTRA DENTRO DEL IF DE LA LINEA 423 */
+<!doctype html>
+    <html lang="es">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Exportar (GEE-F-010 o Base completa)</title>
+        <link rel="icon" href="../../componentes/img/favicon.ico">
+        <link rel="stylesheet" href="../../componentes/export_emprendedores.css">
+
+    </head>
+
+    <body>
+        <div class="card">
+            <div class="hdr"><span class="dot"></span>
+                <h1>Exportar — <strong>GEE-F-010</strong> o <strong>Base completa</strong></h1>
+            </div>
+            <form method="post" id="frmExport" novalidate>
+                <fieldset>
+                    <legend>Tipo de exportación</legend>
+                    <div class="grid">
+                        <div class="col-8">
+                            <label>¿Qué deseas exportar?</label>
+                            <select name="export_mode" id="export_mode" required>
+                                <option value="gee" selected>Formato GEE-F-010 (lista de asistencia para orientadores)</option>
+                                <option value="db">Base de datos completa (Emprendedores)</option>
+                            </select>
+                            <div class="muted">El formato GEE-F-010 requiere los datos del evento; la base completa no.</div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset id="fs-fechas">
+                    <legend>Rango de fechas (filtra por <em>fecha_orientacion</em>)</legend>
+                    <div class="grid">
+                        <div class="col-4"><label>Desde</label><input type="date" name="desde" value="<?= h($today) ?>" required></div>
+                        <div class="col-4"><label>Hasta</label><input type="date" name="hasta" value="<?= h($today) ?>" required></div>
+                        <div class="col-4"><label>Hora (opcional)</label><input type="time" name="hora" placeholder="HH:MM"></div>
+                    </div>
+                    <div class="muted">Si “Desde” y “Hasta” son iguales, se exporta solo esa fecha.</div>
+                </fieldset>
+
+                <fieldset id="fs-evento">
+                    <legend>Datos del evento</legend>
+                    <div class="grid">
+                        <div class="col-7">
+                            <label>Título de la charla</label>
+                            <input type="text" name="titulo" placeholder="Introducción a Fondo Emprender" required>
+                        </div>
+                        <div class="col-3">
+                            <label>Tipo de sesión</label>
+                            <select name="tipo_sesion" required>
+                                <option value="ORIENTACION">ORIENTACIÓN</option>
+                                <option value="ENTRENAMIENTO">ENTRENAMIENTO</option>
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <label>Modalidad</label>
+                            <select name="modalidad" required>
+                                <option value="PRESENCIAL">PRESENCIAL</option>
+                                <option value="VIRTUAL">VIRTUAL</option>
+                            </select>
+                        </div>
+
+                        <div class="col-5">
+                            <label>Expositor</label>
+                            <div class="row">
+                                <input type="text" id="expositor" name="expositor" placeholder="Nombre del expositor" style="flex:1">
+                                <label class="na"><input type="checkbox" id="expo_na" name="expositor_na" value="1"> No aplica</label>
+                            </div>
+                        </div>
+
+                        <div class="col-7">
+                            <label>Orientador responsable</label>
+                            <select name="orientador_sel" id="orientador_sel" required>
+                                <option value="" <?= $preSelect === '' ? 'selected' : '' ?> disabled>— Selecciona orientador —</option>
+                                <?php foreach ($ORIENTADORES as $centro => $lista): ?>
+                                    <optgroup label="<?= h($centro) ?>">
+                                        <?php foreach ($lista as $nom): ?>
+                                            <option value="<?= h($nom) ?>" <?= $preSelect === $nom ? 'selected' : '' ?>><?= h($nom) ?></option>
+                                        <?php endforeach; ?>
+                                    </optgroup>
+                                <?php endforeach; ?>
+                                <option value="OTRO" <?= $preSelect === 'OTRO' ? 'selected' : '' ?>>Otro (escribir manualmente)</option>
+                            </select>
+                            <input type="text" name="orientador_otro" id="orientador_otro" placeholder="Nombre y apellido"
+                                value="<?= h($preOtro) ?>" style="margin-top:8px;display:<?= $preSelect === 'OTRO' ? 'block' : 'none' ?>;">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset id="fs-exclusivo">
+                    <legend>Evento exclusivo (opcional)</legend>
+                    <div class="exclusive-top">
+                        <div class="muted">Marca si el evento fue exclusivo para alguno de estos grupos. Si no aplica, déjalo sin marcar o activa “No aplica”.</div>
+                        <label class="na"><input type="checkbox" id="excl_na" name="exclusivo_na" value="1"> No aplica</label>
+                    </div>
+                    <div class="exclusive-grid" id="choices" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px 16px;align-items:start">
+                        <?php $labels = ['Jóvenes', 'Población ARN', 'Líderes y/o Lideresas', 'Jóvenes en Paz', 'Cuidadores', 'Veteranos', 'Negritudes', 'Raizales', 'Indígenas', 'Municipios PDET', 'Mujeres', 'Economía Popular', 'Campesinos', 'Indígena Amazónico', 'Parques Nacionales', 'ICBF', 'Afrocolombianos', 'Palenqueros'];
+                        foreach ($labels as $lb): ?>
+                            <label class="option" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:#fff;">
+                                <input type="checkbox" name="exclusivo[]" value="<?= h($lb) ?>"> <?= h($lb) ?>
+                            </label>
+                        <?php endforeach; ?>
+                    </div>
+                </fieldset>
+
+                <div class="actions">
+                    <a href="panel_orientador" class="btn btn-back">← Volver al panel</a>
+                    <button type="submit" class="btn btn-primary">Exportar XLSX</button>
+                    <button type="reset" class="btn btn-secondary">Limpiar</button>
+                </div>
+            </form>
+        </div>
+
+    
+        </script>
+    </body>
+
+    </html>
