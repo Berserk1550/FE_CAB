@@ -1,0 +1,12 @@
+[2025-12-09T09:14:47-05:00] CHARSETS: character_set_client=utf8mb4 | character_set_connection=utf8mb4 | character_set_database=latin1 | character_set_filesystem=binary | character_set_results=utf8mb4 | character_set_server=latin1 | character_set_system=utf8mb3 | character_sets_dir=/usr/share/mysql/charsets/
+[2025-12-09T09:14:47-05:00] COLLATIONS: collation_connection=utf8mb4_spanish_ci | collation_database=latin1_swedish_ci | collation_server=latin1_swedish_ci
+[2025-12-09T09:14:47-05:00] SET NAMES tried: utf8mb4_spanish_ci | success=1
+[2025-12-09T09:14:47-05:00] TEST probe_in   (raw) : Ññ Áá Éé Íí Óó Úú Üü
+[2025-12-09T09:14:47-05:00] TEST probe_fix  (utf8) : Ññ Áá Éé Íí Óó Úú Üü
+[2025-12-09T09:14:47-05:00] TEST looks_moji?      : NO
+[2025-12-09T09:20:34-05:00] CHARSETS: character_set_client=utf8mb4 | character_set_connection=utf8mb4 | character_set_database=latin1 | character_set_filesystem=binary | character_set_results=utf8mb4 | character_set_server=latin1 | character_set_system=utf8mb3 | character_sets_dir=/usr/share/mysql/charsets/
+[2025-12-09T09:20:34-05:00] COLLATIONS: collation_connection=utf8mb4_spanish_ci | collation_database=latin1_swedish_ci | collation_server=latin1_swedish_ci
+[2025-12-09T09:20:34-05:00] SET NAMES tried: utf8mb4_spanish_ci | success=1
+[2025-12-09T09:20:34-05:00] TEST probe_in   (raw) : Ññ Áá Éé Íí Óó Úú Üü
+[2025-12-09T09:20:34-05:00] TEST probe_fix  (utf8) : Ññ Áá Éé Íí Óó Úú Üü
+[2025-12-09T09:20:34-05:00] TEST looks_moji?      : NO
